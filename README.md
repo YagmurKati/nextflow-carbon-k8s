@@ -32,6 +32,44 @@ Jobs are launched dynamically by a Kubernetes **CronJob** that checks real-time 
 - Access to a Docker registry (for the carbon-checker image)
 
 ---
+## 🧭 Namespace Setup
+
+This project assumes that you are working within a specific Kubernetes namespace.
+
+### 🔍 How to Find Your Namespace
+
+If your Kubernetes administrator has already assigned you a namespace, you can list all available namespaces with:
+
+```bash
+kubectl get namespaces
+```
+Look for a namespace that matches your team, username, or was communicated to you by your admin.
+
+If you're unsure which namespace to use, ask your administrator.
+
+## 📌 Using Your Namespace
+
+Once you know your namespace, make sure to include the -n flag in your kubectl commands:
+```bash
+kubectl get pods -n your-namespace
+```
+Replace your-namespace with your actual namespace name.
+
+    ⚠️ Note: Do not create your own namespace unless you’ve confirmed you have permission to do so.
+
+If you do have permissions and want to create a namespace:
+```bash
+kubectl create namespace my-namespace
+```
+
+# 1. Set your Kubernetes namespace
+export NAMESPACE=my-namespace
+
+# 2. Bootstrap all resources (PVC, RBAC, CronJob, etc.)
+chmod +x bootstrap-nextflow-carbon.sh
+./bootstrap-nextflow-carbon.sh
+
+---
 
 ## 🚀 Quick Start: One-Step Setup
 
